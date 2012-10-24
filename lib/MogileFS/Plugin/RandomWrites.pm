@@ -10,7 +10,7 @@ use MogileFS::Server;
 use List::Util qw/ shuffle /;
 
 sub load {
-    MogileFS::Plugin::register_global_hook("cmd_create_open_order_devices", \&cmd_create_open_order_devices) or die $!;
+    MogileFS::Config::register_global_hook("cmd_create_open_order_devices", \&cmd_create_open_order_devices) or die $!;
 }
 
 sub cmd_create_open_order_devices {
