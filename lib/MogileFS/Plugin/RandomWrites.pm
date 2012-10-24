@@ -16,7 +16,7 @@ sub load {
 sub cmd_create_open_order_devices {
     my ($all_devices, $return_list) = @_;
 
-    @{ $return_list } = shuffle @{ $all_devices };
+    @{ $return_list } = shuffle grep { $_->should_get_new_files; } @{ $all_devices };
     return 1;
 }
 

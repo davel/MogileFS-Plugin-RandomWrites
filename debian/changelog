@@ -1,3 +1,9 @@
+libmogilefs-plugin-randomwrites-perl (0.02-1) lucid; urgency=low
+
+  * Avoid suggesting writes to dead devices.
+
+ -- Dave Lambley <davel@state51.co.uk>  Wed, 24 Oct 2012 13:28:36 +0000
+
 libmogilefs-plugin-randomwrites-perl (0.01-1) unstable; urgency=low
 
   * Initial Release.
