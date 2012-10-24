@@ -1,5 +1,6 @@
 use 5.010001;
 use ExtUtils::MakeMaker;
+use FindBin;
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.
 WriteMakefile(
@@ -13,3 +14,6 @@ WriteMakefile(
       (ABSTRACT_FROM  => 'lib/MogileFS/Plugin/RandomWrites.pm', # retrieve abstract from module
        AUTHOR         => 'Dave Lambley <davel@state51.co.uk>') : ()),
 );
+
+# Requires Pod::Markdown
+system("pod2markdown < $FindBin::Bin/lib/MogileFS/Plugin/RandomWrites.pm > $FindBin::Bin/README.md");
