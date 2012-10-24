@@ -1,0 +1,6 @@
+Revision history for Perl extension MogileFS::Plugin::RandomWrites.
+
+0.01  Wed Oct 24 11:24:52 2012
+	- original version; created by h2xs 1.23 with options
+		-X MogileFS::Plugin::RandomWrites
+
