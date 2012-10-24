@@ -11,6 +11,7 @@ use List::Util qw/ shuffle /;
 
 sub load {
     MogileFS::register_global_hook("cmd_create_open_order_devices", \&cmd_create_open_order_devices) or die $!;
+    return;
 }
 
 sub cmd_create_open_order_devices {
