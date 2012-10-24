@@ -1,41 +1,27 @@
 package MogileFS::Plugin::RandomWrites;
 
-use 5.010001;
 use strict;
 use warnings;
 
-require Exporter;
-use AutoLoader qw(AUTOLOAD);
+our $VERSION = "0.01";
 
-our @ISA = qw(Exporter);
+use MogileFS::Server;
 
-# Items to export into callers namespace by default. Note: do not export
-# names by default without a very good reason. Use EXPORT_OK instead.
-# Do not simply export all your public functions/methods/constants.
+use List::Util qw/ shuffle /;
 
-# This allows declaration	use MogileFS::Plugin::RandomWrites ':all';
-# If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
-# will save memory.
-our %EXPORT_TAGS = ( 'all' => [ qw(
-	
-) ] );
+sub load {
+    MogileFS::Server::register_global_hook("cmd_create_open_order_devices", \&cmd_create_open_order_devices) or die $!;
+}
 
-our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
+sub cmd_create_open_order_devices {
+    my ($all_devices, $return_list) = @_;
 
-our @EXPORT = qw(
-	
-);
-
-our $VERSION = '0.01';
-
-
-# Preloaded methods go here.
-
-# Autoload methods go after =cut, and are processed by the autosplit program.
+    @{ $return_list } = shuffle @{ $all_devices };
+    return 1;
+}
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 
@@ -43,37 +29,22 @@ MogileFS::Plugin::RandomWrites - Perl extension for blah blah blah
 
 =head1 SYNOPSIS
 
-  use MogileFS::Plugin::RandomWrites;
-  blah blah blah
+In mogilefsd.conf
+
+    plugins = RandomWrites
 
 =head1 DESCRIPTION
 
-Stub documentation for MogileFS::Plugin::RandomWrites, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
-
-Blah blah blah.
-
-=head2 EXPORT
-
-None by default.
-
-
+This plugin cause MogileFS to distribute writes to a random device, rather than
+concentrating on devices with the most space free.
 
 =head1 SEE ALSO
 
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
-
-If you have a mailing list set up for your module, mention it here.
-
-If you have a web site set up for your module, mention it here.
+L<MogileFS::Server>
 
 =head1 AUTHOR
 
-Dave Lambley, E<lt>davel@E<gt>
+Dave Lambley, E<lt>davel@state51.co.ukE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
