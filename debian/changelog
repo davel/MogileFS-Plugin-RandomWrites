@@ -1,3 +1,9 @@
+libmogilefs-plugin-randomwrites-perl (0.03-1) lucid; urgency=low
+
+  * New from upstream.
+
+ -- Dave Lambley <davel@state51.co.uk>  Mon, 07 Jan 2013 17:42:38 +0000
+
 libmogilefs-plugin-randomwrites-perl (0.02-1) lucid; urgency=low
 
   * Avoid suggesting writes to dead devices.

@@ -1,3 +1,6 @@
+0.03
+    - Add a utility method for monitoring how many devices are available for writes.
+
 0.02
     - Avoid suggesting writes to dead devices.
 

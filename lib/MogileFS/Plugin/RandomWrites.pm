@@ -3,7 +3,7 @@ package MogileFS::Plugin::RandomWrites;
 use strict;
 use warnings;
 
-our $VERSION = "0.02";
+our $VERSION = "0.03";
 
 use MogileFS::Server;
 
@@ -11,14 +11,29 @@ use List::Util qw/ shuffle /;
 
 sub load {
     MogileFS::register_global_hook("cmd_create_open_order_devices", \&cmd_create_open_order_devices) or die $!;
+    MogileFS::register_worker_command("list_available_devices", \&list_available_devices) or die $!;
     return;
 }
 
 sub cmd_create_open_order_devices {
     my ($all_devices, $return_list) = @_;
 
-    @{ $return_list } = shuffle grep { $_->should_get_new_files; } @{ $all_devices };
+    @{ $return_list } = shuffle(grep { $_->should_get_new_files; } @{ $all_devices });
     return 1;
+}
+
+sub list_available_devices {
+    my MogileFS::Worker::Query $worker = shift;
+
+    my $i=0;
+    my $res;
+    foreach my $d (grep { $_->should_get_new_files; } Mgd::device_factory()->get_all()) {
+        $res->{"device_$i"} = $d->id;
+        $res->{"mb_free_$i"} = $d->mb_free;
+        $i++;
+    }
+
+    return $worker->ok_line($res);
 }
 
 1;
