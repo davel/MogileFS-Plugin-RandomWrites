@@ -1,3 +1,6 @@
+0.04
+    - Replication policy for randomising writes.
+
 0.03
     - Add a utility method for monitoring how many devices are available for writes.
 
