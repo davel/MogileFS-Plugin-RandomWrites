@@ -17,7 +17,9 @@ sub sort_devices {
 
     @{ $desp } = shuffle grep { $file->{length} <= $_->{mb_free}*1024*1024 } @{ $desp };
     if (!scalar(@{ $desp })) {
-        warn "no desperate devices appear to have ".$file->{length} ." bytes free";
+        unless (@{ $ideal }) {
+            warn "no desperate devices appear to have ".$file->{length} ." bytes free" unless @{ $ideal };
+        }
         @{ $desp } = shuffle @{ $desp };
     }
 
