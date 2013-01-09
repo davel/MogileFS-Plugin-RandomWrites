@@ -7,7 +7,7 @@ WriteMakefile(
     NAME              => 'MogileFS::Plugin::RandomWrites',
     VERSION_FROM      => 'lib/MogileFS/Plugin/RandomWrites.pm', # finds $VERSION
     PREREQ_PM         => {
-        'MogileFS::Server' => 0,
+        'MogileFS::Server' => '2.67',
         'List::Util'       => 0,
     },
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
