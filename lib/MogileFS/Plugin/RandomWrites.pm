@@ -3,7 +3,7 @@ package MogileFS::Plugin::RandomWrites;
 use strict;
 use warnings;
 
-our $VERSION = "0.04";
+our $VERSION = "0.05";
 
 use MogileFS::Server;
 

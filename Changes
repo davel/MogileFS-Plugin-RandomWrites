@@ -1,3 +1,7 @@
+0.05
+    - Reduce warnings.
+    - If there's not enough disc space, try anyway.
+
 0.04
     - Replication policy for randomising writes.
 
