@@ -9,10 +9,14 @@ sub sort_devices {
 
     my $file = MogileFS::FID->new_from_db_row(Mgd::get_store()->read_store->file_row_from_fidid($fid));
 
-    @{ $ideal } = shuffle grep { $file->{length} <= $_->{mb_free}*1024*1024 } @{ $ideal };
+    my @ideal = @{ $ideal };
+    my @desp;
+
+    @{ $ideal } = shuffle grep { $file->{length} <= $_->{mb_free}*1024*1024 } @ideal;
+
     if (!scalar(@{ $ideal })) {
         warn "no ideal devices appear to have ".$file->{length} ." bytes free";
-        @{ $ideal } = shuffle @{ $ideal };
+        @{ $ideal } = shuffle @ideal;
     }
 
     @{ $desp } = shuffle grep { $file->{length} <= $_->{mb_free}*1024*1024 } @{ $desp };
@@ -20,7 +24,7 @@ sub sort_devices {
         unless (@{ $ideal }) {
             warn "no desperate devices appear to have ".$file->{length} ." bytes free" unless @{ $ideal };
         }
-        @{ $desp } = shuffle @{ $desp };
+        @{ $desp } = shuffle @desp;
     }
 
     return;
