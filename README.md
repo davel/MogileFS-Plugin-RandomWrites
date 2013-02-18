@@ -1,12 +1,14 @@
 # NAME
 
-MogileFS::Plugin::RandomWrites - Perl extension for blah blah blah
+MogileFS::Plugin::RandomWrites - Mogile plugin to distribute files evenly
 
 # SYNOPSIS
 
 In mogilefsd.conf
 
     plugins = RandomWrites
+
+    mogadm --trackers=$MOGILE_TRACKER class modify <domain> <class> --replpolicy=MultipleHostsRandom\(2\)
 
 # DESCRIPTION
 
