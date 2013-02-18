@@ -12,14 +12,14 @@ sub sort_devices {
     my @ideal = @{ $ideal };
     my @desp  = @{ $desp };
 
-    @{ $ideal } = shuffle grep { $file->{length} <= $_->{mb_free}*1024*1024 } @ideal;
+    @{ $ideal } = shuffle grep { $file->{length} <= $_->{mb_free}*1024*1024 || 0 } @ideal;
 
     if (!scalar(@{ $ideal })) {
         warn "no ideal devices appear to have ".$file->{length} ." bytes free";
         @{ $ideal } = shuffle @ideal;
     }
 
-    @{ $desp } = shuffle grep { $file->{length} <= $_->{mb_free}*1024*1024 } @desp;
+    @{ $desp } = shuffle grep { $file->{length} <= $_->{mb_free}*1024*1024 || 0 } @desp;
     if (!scalar(@{ $desp })) {
         unless (@{ $ideal }) {
             warn "no desperate devices appear to have ".$file->{length} ." bytes free" unless @{ $ideal };
