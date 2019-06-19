@@ -1,4 +1,5 @@
     - Warning fix.
+    - Switch to Dist::Zilla.
 
 0.05
     - Reduce warnings.
@@ -14,4 +15,4 @@
     - Avoid suggesting writes to dead devices.
 
 0.01
-	- Original release.
+    - Original release.
